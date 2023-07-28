@@ -1,0 +1,52 @@
+Direct Sharing
+- Simplest form of data sharing
+- Shares are setup by the provider account and they must specify which consumers can access this data
+- It is possible to share with other Snowflake accounts as well as non-Snowflake customers
+
+
+
+
+
+Data Exchange
+- Private Data Sharing Hub
+- Similar to Marketplace
+- Snowflake account owning the data exchange can enable sharing of data with
+  - Partners
+  - Suppliers
+  - Vendors
+  - Customers
+
+
+
+
+Snowflake Performance Factors
+- Caching
+  - Metadata Cache
+  - Query Result Cache
+  - Virtual Warehouse Cache aka Local Disk Cache
+- Scaling Up
+- Scaling Down
+- Scaling Out: multi-cluster virtual warehouse
+- Improved partition pruning via clustering keys
+- Materialized views
+- Search optimization
+
+
+
+Query Profile
+- Provides a graphical representation of a query's execution
+- Provides execution details for a query
+- Statistics and details for each step
+- Statistics and details for the whole query
+
+
+
+
+Query Result Cache
+- When a query is executed, Snowflake caches the query results for a period
+- Snowflake uses the Query Result Cache to avoid re-executing queries when there are no changes to data
+- Query Result Cache is used by a new query if
+  - The query syntactically matches the previously executed query
+  - The data in underlying table hasn't changed, and the micro-partitions haven't changed
+  - The query doesn't use functions that are evaluated at runtime, or UDF or external functions
+  - The security role running the query has the required privileges
