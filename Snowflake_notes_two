@@ -1,0 +1,101 @@
+External Tables
+- External tables allow you to create tables on data stored external to Snowflake
+  - Definition in Snowflake metadata
+  - Data in external location
+- External table functionality lets you query an external table like a regular table
+  - Join with other tables
+  - Create views on top of external tables
+- External tables are read-only since they point to external storage
+  - DML operations cannot be performed on them
+- External table data does not contribute to Snowflake storage costs
+  - The compute cost is charged when queries are executed
+
+
+
+
+
+
+
+Unload Data from Snowflake
+- Encryption
+  - Automatically encrypted when exporting to an internal stage
+  - Not automatically encrypted when exported to an external stage
+    - Although can be configured to encrypt by providing an encryption key
+- Single vs. Multiple files
+  - Exported to multiple files by default
+  - Can be charged to a single file
+
+
+
+
+
+
+Time Travel
+- Time Travel
+  - Travel back to a point in time
+  - Travel back to a point before a query
+  - Undrop objects
+  - Undo accidental changes
+- Which objects
+  - Databases
+  - Schemas
+  - Tables
+- Some use cases
+  - Query data in past
+  - Restore dropped databases, tables, and schemas
+  - Combine time travel with cloning
+
+
+
+
+
+
+Fail-safe Storage
+- Provides a 7-day period during which historical data is recoverable by Snowflake
+- Period starts immediately after the time travel period ends
+- Fail safe data can only be recovered by the Snowflake support
+- Provides a way to recover lost data in a relatively quick manner
+- Snowflake's redundant and cheap data storage architecture reduces the need for backups, there still can be scenarios for data loss
+- Failsafe storage provides a safety cushion in such scenarios and allows you to recover data 7 days after even your time travel history is gone
+
+
+
+
+
+Types of tables in Snowflake
+- Temporary
+  - Exist-only for the lifetime of a session
+  - They are not visible to other sessions and are removed immediately once the session ends
+- Transient
+  - Similar to temporary tables, but they persist between sessions. They are designed to hold temporary data that needs to be accessed across sessions
+    - Ex: ETL jobs
+- Permanent
+  - This is the default type of table in Snowflake, if you don't specify the type, a table is created as Permanent
+
+
+
+
+
+Cloning in Snowflake
+- ZERO Copy Cloning
+  - Metadata Operation
+  - Perform by Cloud Services Layer using micro-partition metadata
+  - No physical data movement
+  - No extra storage requirement
+  - Generally a very fast operation
+- CLONE command
+  - Supported objects:
+    - Databases, Schemas, and Tables
+    - Streams
+    - Stages, File formats, Sequences, Tasks
+
+
+
+
+
+
+Secure Data Sharing
+- Metadata Operation
+- Perform by Cloud Services Layer using micro-partition metadata
+- No physical data movement
+- Generally a very fast operation
