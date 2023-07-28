@@ -1,0 +1,102 @@
+Snowflake: Traditional Database Architecture
+- Shared-disk:
+  - SMP
+  - Storage is shared
+  - Multiple CPU but shared
+- Shared-nothing:
+  - MPP
+  - Storage and compute are Decentralized
+  - Each node has its Allocated Storage
+  - Massively Parallel Processing
+
+
+
+
+
+
+Snowflake Hybrid Architecture
+- Multi-Cluster, Shared Data:
+  - Separation of storage and compute allows unlimited scalability which is independent of each other
+
+
+
+
+
+
+Cloud Services Layer
+- Metadata and Management
+- Security and Governance
+- Sharing
+- Query Parsing
+- Query optimization
+- ACID control
+
+
+
+
+
+
+
+Snowflake Cost
+- Snowflake Cost
+  - AWS S3
+  - Azure Blob Storage
+  - Based on actual storage
+  - Columnar compression and other techniques save cost
+- Compute Cost
+  - Loading data
+  - Processing data
+  - Only for actual usage
+  - Virtual warehouses can help minimize costs
+- Serverless Compute Costs
+  - Snowpipe
+  - Automatic clustering
+  - Database replication
+  - Materialized view
+  - Search optimization
+- Data Transfer
+  - No cost for transfer in
+  - Costs on transfer out to other regions and to other cloud platforms
+- Cloud services
+  - Up to 10% of cloud services is free
+  - Database definitions
+  - Table definitions
+  - Users etc.
+
+
+
+
+
+
+Table Stage
+- Table stage cannot be created or dropped. They are automatically created and available for a table's lifetime
+- They share the table's name and can be referenced using @%tablename syntax
+- They don't support file format options. The COPY command must include these arguments
+- They don't allow data transformations while loading the data
+
+
+
+
+
+
+
+User stage
+- Can't be created or dropped. They are automatically created and available for a user lifetime
+- They can be referenced using @~ syntax
+- They don't support file format options. The COPY command must include these arguments
+
+
+
+
+
+
+Basic Data Transformations
+- Basic transformations allowed during ingestion using COPY
+  - Omit column(s)
+  - Change order of the columns
+  - Cast columns into specific data types 
+  - Truncate
+- Transformations not supported during COPY
+  - Joins
+  - Filters i.e. WHERE clause
+  - Aggregation functions
